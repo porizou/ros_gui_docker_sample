@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  ros:
+    image: turtlebot_ros:latest
+    container_name: turtlebot_gazebo
+    environment:
+      - DISPLAY
+      - QT_X11_NO_MITSHM=1
+      - TURTLEBOT3_MODEL=burger
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    tty: true
+    command: bash -c "source /root/catkin_ws/devel/setup.bash; roslaunch turtlebot3_gazebo turtlebot3_world.launch"
+    network_mode: "host"
